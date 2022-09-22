@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// const services = await Astro.glob('/*md')
+const { frontmatter } = Astro.props;
+---
+
+<Layout title="Landscaping Company">
+	<main class="">
+		<!-- page-banner-section 
+			================================================== -->
+            <section class="page-banner-section">
+                <div class="container">
+                    <h2>{ frontmatter.service }</h2>
+                </div>
+            </section>
+        <!-- End page-banner section -->
+
+        	<!-- blog section 
+			================================================== -->
+		<section class="blog-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="blog-box">
+
+							<div class="blog-post single-post">
+								<img src={"/upload/blog/" + frontmatter.image} alt="">
+								<div class="post-content-text">
+									<h1>{ frontmatter.title }</h1>
+									<span>{ frontmatter.time }</span>
+                                    <p>{ frontmatter.direction }</p>
+
+									<!-- <p>Quisque ligulas ipsum, euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae.</p>
+									<p>Vestibulum sodales ante a purus volutpat euismod. Proin sodales quam nec ante sollicitudin lacinia. Ut egestas bibendum tempor. Morbi non nibh sit amet ligula blandit ullamcorper in nec risus. Pellentesque fringilla diam faucibus tortor bibendum vulputate. Etiam turpis urna, rhoncus et mattis ut, dapibus eu nunc. Nunc sed aliquet nisi. Nullam ut magna non lacus adipiscing volutpat. Aenean odio mauris, consectetur quis consequat quis, blandit a nunc. Sed orci erat, placerat ac interdum ut, suscipit eu augue. Nunc vitae mi tortor. Ut vel justo quis lectus elementum ullamcorper volutpat vel libero.</p>
+									<blockquote>
+										<p>“ Class aptent taciti <span>sociosqu</span> ad litora torquent per conubia nostra, per inceptos himenaeos. <span>Nulla nunc dui</span>, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. ”</p>
+									</blockquote>
+									<p>Vestibulum sodales ante a purus volutpat euismod. Proin sodales quam nec ante sollicitudin lacinia. Ut egestas bibendum tempor. Morbi non nibh sit amet ligula blandit ullamcorper in nec risus. Pellentesque fringilla diam faucibus tortor bibendum vulputate. Etiam turpis urna, rhoncus et mattis ut, dapibus eu nunc. Nunc sed aliquet nisi. </p> -->
+								</div>
+							</div>
+							<div class="autor-post">
+								<img src="upload/team/4.jpg" alt="">
+								<div class="autor-content">
+									<h2>Besim Dauti</h2>
+									<span>Architect</span>
+									<slot/>
+								</div>
+							</div>
+						
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- End blog section -->
+	</main>
+</Layout>
+
+<style>
+</style>
+
+<script>
+</script>

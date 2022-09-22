@@ -1,0 +1,42 @@
+---
+
+    const services = await Astro.glob('../../pages/services/*.md');
+
+---
+
+<!-- news-section 
+    ================================================== -->
+    <section class="news-section">
+        <div class="container">
+            <div class="title-section">
+                <h2>Service</h2>
+                <h1>Our Service</h1>
+            </div>
+            <div class="news-box">
+                <div class="row">
+                    {services.map((item , i) => (
+                        <>
+                        {i <= 2 ?                     
+                            <div class="col-md-4" >
+                                <div class="news-post">
+                                    <img src={'upload/blog/'+ item.frontmatter.image} alt="">
+                                    <h2><a href="single-post.html">{ item.frontmatter.name }</a></h2>
+                                    <span>{ item.frontmatter.time }</span>
+                                    <p>{ item.frontmatter.direction }</p>
+                                    <a href="single-post.html">Continue Reading...</a>
+                                </div>
+                            </div>
+                            : <span></span>
+                        }
+                        </>
+                    ))}
+                </div>
+            </div>
+
+        </div>
+    </section>
+<!-- End news section -->
+
+<script define:vars={{services}}>
+    console.log(services,'aaaaaaaaaa');
+</script>
