@@ -94,10 +94,10 @@ const { file } = Astro.props;
 		
 	</body>
 </html>
-<style lang="scss">
+<style lang="scss" is:global>
 	@import url('../../src/style/tailwind.scss');
 	@import url('../../src/style/style.scss');
-	.container{
+	.container :is:global{
 		@media (min-width: 1280px) {
 			max-width: 1200px !important;
 		}
@@ -107,7 +107,7 @@ const { file } = Astro.props;
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.flex-center{
+	.flex-center :is:global{
 		display: flex;
 		justify-content: center;
 		align-items: center;
