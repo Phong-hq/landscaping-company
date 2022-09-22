@@ -97,7 +97,7 @@ const { file } = Astro.props;
 <style lang="scss" is:global>
 	@import url('../../src/style/tailwind.scss');
 	@import url('../../src/style/style.scss');
-	.container :is:global{
+	.container{
 		@media (min-width: 1280px) {
 			max-width: 1200px !important;
 		}
@@ -107,9 +107,56 @@ const { file } = Astro.props;
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.flex-center :is:global{
+	.flex-center{
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	.text-hover-underline {
+		position: relative;
+		cursor: pointer;
+		transition: 0.5s ease-in-out;
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: -5px;
+			left: 0;
+			width: 0;
+			height: 3px;
+			opacity: 0;
+			border-radius: 100px;
+			background: #fff;
+			transition: inherit;
+			z-index: 1;
+			animation: hide-underline 0.5s linear;
+		}
+		&.active, &:hover {
+			color: #fff;
+			&::after {
+				width: 100%;
+				opacity: 1;
+			}
+		}
+		&.active {
+			&::after {
+				animation: show-underline 0.5s linear forwards;
+			}
+		}
+		@keyframes show-underline {
+			0% {
+				width: 0;
+			}
+			100% {
+				width: 100%;
+			}
+		}
+		@keyframes hide-underline {
+			0% {
+				width: 100%;
+			}
+			100% {
+				width: 0;
+			}
+		}
 	}
 </style>

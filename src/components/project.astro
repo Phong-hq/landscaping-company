@@ -1,8 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SectionComponent from "../components/project/Section.astro";
+import SectionComponent2 from "../components/project/Section.vue";
 
 // const services = await Astro.glob('/*md')
 const { frontmatter } = Astro.props;
+
 ---
 
 <Layout title="Landscaping Company">
@@ -13,76 +16,81 @@ const { frontmatter } = Astro.props;
                     { frontmatter.service }
                 </p>
             </div>
+            <SectionComponent2  item={frontmatter} type={1}/>
+            <SectionComponent2  item={frontmatter} type={2}/>
+            <SectionComponent2  item={frontmatter} type={3}/>
 
-            <div class="py-[120px] detail">
-                <div class="container">
-                    <div class="flex detail-box">
-                        <div class="w-[58%] mr-7 left">
-                            <img class="w-full" src={"/images/projects/" + frontmatter.image} alt="">
-                        </div>
-                        <div class="w-[40%] right" >
-                            <p class="text-[30px] font-extrabold text- mb-6">Project Overview</p>
-                            <p class="text-18px text-[#666666] font-light mb-12">{ frontmatter.direction }</p>
-                            {frontmatter.status && frontmatter.status != "" 
+            <!-- <section>
+                <div class="py-[120px] detail">
+                    <div class="container">
+                        <div class="flex detail-box">
+                            <div class="w-[58%] mr-7 left">
+                                <img class="w-full" src={"/images/projects/" + frontmatter.image} alt="">
+                            </div>
+                            <div class="w-[40%] right" >
+                                <p class="text-[30px] font-extrabold text- mb-6">Project Overview</p>
+                                <p class="text-18px text-[#666666] font-light mb-12">{ frontmatter.direction }</p>
+                                {frontmatter.status && frontmatter.status != "" 
+                                    ? 
+                                    <div class="flex items-center relative">
+                                        <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Project Status</p>
+                                        <div class="h-[22px] w-full pl-[160px]">
+                                            <p class="text-18px font-light text-[#555555] ">{ frontmatter.status }</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
+                                    : 
+                                    <span></span>
+                                }
+    
+                                {frontmatter.type && frontmatter.type != "" 
                                 ? 
                                 <div class="flex items-center relative">
-                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Project Status</p>
+                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Type</p>
                                     <div class="h-[22px] w-full pl-[160px]">
-                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.status }</p>
+                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.type }</p>
                                     </div>
                                 </div>
                                 <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
                                 : 
                                 <span></span>
-                            }
-
-                            {frontmatter.type && frontmatter.type != "" 
-                            ? 
-                            <div class="flex items-center relative">
-                                <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Type</p>
-                                <div class="h-[22px] w-full pl-[160px]">
-                                    <p class="text-18px font-light text-[#555555] ">{ frontmatter.type }</p>
+                                }
+    
+                                {frontmatter.location && frontmatter.location != "" 
+                                ? 
+                                <div class="flex items-center relative">
+                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Location</p>
+                                    <div class="h-[22px] w-full pl-[160px]">
+                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.location }</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                            : 
-                            <span></span>
-                            }
-
-                            {frontmatter.location && frontmatter.location != "" 
-                            ? 
-                            <div class="flex items-center relative">
-                                <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Location</p>
-                                <div class="h-[22px] w-full pl-[160px]">
-                                    <p class="text-18px font-light text-[#555555] ">{ frontmatter.location }</p>
+                                <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
+                                : 
+                                <span></span>
+                                }
+    
+                                {frontmatter.area  && frontmatter.area != "" 
+                                ? 
+                                <div class="flex items-center relative">
+                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Area</p>
+                                    <div class="h-[22px] w-full pl-[160px]">
+                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.area }</p>
+                                    </div>
                                 </div>
+                                <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
+                                : 
+                                <span></span>
+                                }
+    
+                                <button class="">
+                                    <a href="#">Schedule a visit</a>
+                                </button>
+    
                             </div>
-                            <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                            : 
-                            <span></span>
-                            }
-
-                            {frontmatter.area  && frontmatter.area != "" 
-                            ? 
-                            <div class="flex items-center relative">
-                                <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Area</p>
-                                <div class="h-[22px] w-full pl-[160px]">
-                                    <p class="text-18px font-light text-[#555555] ">{ frontmatter.area }</p>
-                                </div>
-                            </div>
-                            <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                            : 
-                            <span></span>
-                            }
-
-                            <button class="">
-                                <a href="#">Schedule a visit</a>
-                            </button>
-
                         </div>
                     </div>
                 </div>
-            </div>
+            </section> -->
         </div>
 
     </main>

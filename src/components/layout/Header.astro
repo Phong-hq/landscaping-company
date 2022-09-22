@@ -7,11 +7,7 @@ const posts = await Astro.glob('../../markdown/layout/contact.md');
 const projects = await Astro.glob('../../pages/projects/*.md');
  
 const navList = [
-        {name: 'Home', url: '/', dropDowm:[
-           {name: 'Test1', url: '/'},
-           {name: 'Test2', url: '/'},
-           {name: 'Test3', url: '/'},
-        ]},
+        {name: 'Home', url: '/',},
         {name: 'About', url: '/'},
         {name: 'Projects', url: '/', dropDowm:[]},
         {name: 'Contact', url: '/'},
@@ -36,7 +32,7 @@ const navList = [
                 {navList.map((item) => (
                     <Fragment>
                         <li class="h-full flex-center relative item mx-6">
-                            <a class="text-white hover:text-yellow text-18px font-medium" href={item.url}>
+                            <a class="text-white hover:text-primary-hover text-18px font-medium" href={item.url}>
                                 { item.name }
                             </a>
                             {
@@ -45,7 +41,7 @@ const navList = [
                                     {item.dropDowm.map((item2) => (
                                         <>
                                         <li class="flex items-center">
-                                            <a class="text-white hover:text-yellow px-7" href={item2.url}>{ item2.name }</a>
+                                            <a class="text-white hover:text-primary-hover px-7" href={item2.url}>{ item2.name }</a>
                                         </li>
                                         </>
                                     ))}
