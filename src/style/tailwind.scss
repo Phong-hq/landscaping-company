@@ -9,6 +9,36 @@
     }
 }
 
-.header{
-    background-color: aqua !important;
+@layer utilities {
+    .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .container{
+    @media (min-width: 1280px) {
+        max-width: 1200px !important;
+    }
+    @media (max-width: 639px) {
+        padding: 0 5%;
+    }
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+
+.container{
+    @media (min-width: 1280px) {
+        max-width: 1200px !important;
+    }
+    @media (max-width: 639px) {
+        padding: 0 5%;
+    }
+    margin-left: auto;
+    margin-right: auto;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
