@@ -1,7 +1,7 @@
 ---
 
-layout: ../../components/service.astro
-service: "Grass"
+layout: ../../components/project.astro
+service: "Concrete"
 title: "WE CONSTRUCT BUILDINGS2"
 time: "22 JANNUARY 2015"
 image: "b2.jpg"
@@ -10,6 +10,6 @@ direction: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillu
 status: "Completed, 13 June 2020"
 type: "Apartments"
 Location: "California, USA"
-Area1200: "1200 - 1400 Sq ft."
+area: "1200 - 1400 Sq ft."
 
 ---

@@ -1,0 +1,114 @@
+---
+
+    const projects = await Astro.glob('../../pages/projects/*.md');
+    // const tests = await Astro.glob('../../pages/test');
+
+---
+
+<!-- news-section 
+    ================================================== -->
+    <section class="my-[120px] projects">
+        <div class="container">
+            <div class="w-full flex flex-col items-center mb-14">
+                <p class="text-14px text-[#888888] font-light mb-5">EXPERIENCE BEST AMORTEZ PROPERTIES</p>
+                <p class="text-[50px] font-extrabold text-[#222222]">Our - Latest Projects</p>
+            </div>
+            <div class="owl-carousel owl-theme">
+                {projects.map((item, i) => (
+                    <>
+                        <div class="item" style={"--background: url('/images/" + item.frontmatter.imageCarousel +"')"}>
+                            <div class="image">
+                                <p class="text-[100px] text-white z-2 font-light absolute bottom-0">0{ i+1 }</p>
+                            </div>
+                            <div class="w-full flex-center">
+                                <a class="text-2xl text-black hover:text-primary-hover font-semibold pt-7" href={ item.url }>{ item.frontmatter.service }</a>
+                            </div>
+                        </div>
+                    </>
+                ))}
+            </div>
+        </div>
+    </section>
+
+<script>
+    // console.log(projects,'aaaaaaaaaa');
+    // console.log(tests,'aaaaaaaaaa');
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:30,
+        nav:false,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:true,
+        responsive:{
+            0:{
+                items:1,
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:4
+            }
+        }
+    })
+
+</script>
+
+<style lang="scss">
+    .projects{
+        .owl-carousel{
+            position: relative;
+            .item{
+                .image{
+                    position: relative;
+                    height: 550px;
+                    background-image: var(--background);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        height: 550px;
+                        width: 100%;
+                        // height: 100%;
+                        left: 0px;
+                        top: 0px;
+                        opacity: 0.9;
+                        z-index: 1;
+                        clip-path: polygon(0% 100%, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
+                        transition: all 500ms ease;
+                        transform: scaleX(0);
+                        transform-origin: right center;
+                        background: var(--primary-hover);
+                    }
+                    .z-2{
+                        bottom: 50px;
+                        right: 0px;
+                        opacity: 0;
+                        transition: all 500ms ease;
+                        z-index: 10;
+                    }
+                    &:hover{
+                        &::before{
+                            transform: scaleX(1);
+                        }
+                        .z-2{
+                            right: 20px;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+        .owl-theme .owl-dots{
+            display: none;
+        }
+        .owl-nav{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+</style>

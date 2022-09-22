@@ -1,6 +1,6 @@
 ---
 
-layout: ../../components/service.astro
+layout: ../../components/project.astro
 service: "Retaining wall"
 title: "WE CONSTRUCT BUILDINGS3"
 time: "22 JANNUARY 2015"
@@ -9,8 +9,8 @@ image: "b3.jpg"
 direction: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
 status: "Completed, 13 June 2020"
 type: "Apartments"
-Location: "California, USA"
-Area1200: "1200 - 1400 Sq ft."
+location: "California, USA"
+area: "1200 - 1400 Sq ft."
 
 ---
 

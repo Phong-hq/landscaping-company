@@ -194,6 +194,10 @@ website:   	http://www.themepunch.com
 	visibility:hidden; 
 	white-space: nowrap;
 	display: block;
+	color: #fff;
+}
+.rev_slider .tp-parallax-wrap.tp-parallax-container:nth{
+	/* top: 320px !important; */
 }
 
 

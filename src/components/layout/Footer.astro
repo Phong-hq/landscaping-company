@@ -1,66 +1,160 @@
 ---
 
-const contacts = await Astro.glob('../../pages/component/contact.md');
+const contacts = await Astro.glob('../../markdown/layout/contact.md');
+
+const servicesList = [
+    'Property Construction', 'Investor Relations', 'Community Development', 'Property Management', 'Floor Designing', 'Re-Construct Buildings'
+];
+
+const aboutUs = [
+    'Mission and Vision', 'Our Projects', 'Latest Articles', 'Media Presentation', 'Pricing Structure', 'Terms & Conditions'
+]
 
 
 ---
     
     <!-- footer 
         ================================================== -->
-        <footer>
-            <div class="up-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="footer-widget">
-                                <h2>About Us</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna.</p>
-                                <img src="images/footer-logo.png" alt="">
-                            </div>
+        <footer class="bg-primary border-bottom">
+            <div class="flex flex-wrap justify-between container footer">
+                <div class="max-w-[360px] item">
+                    <a class="navbar-brand" href="/">
+                        <img class="" src="/logo.png" alt="">
+                    </a>
+                    <p class="text-18px font-light text-gray mb-8">Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna.</p>
+                    <div class="mb-7 flex">
+                        <i class="fa fa-map-marker text-white text-3xl mr-2"></i>
+                        {contacts.map((item) => (
+                                <p class="text-18px font-light text-gray">{ item.frontmatter.address }</p>
+                        ))}
+                    </div>
+                    <div class="flex items-center phone">
+                        <div class="flex-center bg-white w-14 h-14 rounded-[50%] mr-4">
+                            <i class="fa fa-phone text-primary text-3xl"></i>
                         </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget">
-                                <h2>Tags</h2>
-                                <ul class="tag-list">
-                                    <li><a href="#">Building</a></li>
-                                    <li><a href="#">interior</a></li>
-                                    <li><a href="#">isolation</a></li>
-                                    <li><a href="#">kitchen</a></li>
-                                    <li><a href="#">energy</a></li>
-                                </ul>
-                            </div>
+                        <div>
+                            <p class="text-14px text-white font-light mb-1">Start a New Project</p>
+                            {contacts.map((item) => (
+                                <>
+                                    <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + item.frontmatter.phone}>
+                                        { item.frontmatter.phone  }
+                                    </a>
+                                </>
+                            ))}
                         </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget">
-                                <h2>Navigation</h2>
-                                <ul class="navigation">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
+                    </div>
+                </div>
+
+                <div class="max-w-[330px] item">
+                    <div class="widget mt-7 mb-6">
+                        <p class="text-2xl text-white font-extrabold">SERVICE</p>
+                    </div>
+                    <div class="flex flex-col">
+                    {servicesList.map((item) => (
+                        <>
+                            <a class="text-18px text-gray font-light link py-3" href="#">
+                                { item  }
+                            </a>
+                        </>
+                    ))}
+                    </div>
+                </div>
+
+                <div class="max-w-[210px] item">
+                    <div class="widget mt-7 mb-6">
+                        <p class="text-2xl text-white font-extrabold">ABOUT US</p>
+                    </div>
+                    <div class="flex flex-col">
+                    {aboutUs.map((item) => (
+                        <>
+                            <a class="text-18px text-gray font-light link py-3" href="#">
+                                { item  }
+                            </a>
+                        </>
+                    ))}
+                    </div>
+                </div>
+
+                <div class="max-w-[270px] item">
+                    <div class="widget mt-7 mb-6">
+                        <p class="text-2xl text-white font-extrabold">OUR GALLERY</p>
+                    </div>
+                    <div class="grid">
+                        <div>
+                            <img src="/images/images-empty.png" alt="">
                         </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget info-widget">
-                                <h2>Info</h2>
-                                <p class="first-par">You can contact or visit us during working time.</p>
-                                {contacts.map((item) => (
-                                    <>
-                                        <p><span>Tel: </span> {item.frontmatter.phone}</p>
-                                        <p><span>Email: </span> {item.frontmatter.mail}</p>
-                                        <p><span>Working Hours: </span>{item.frontmatter.workingTime}</p>
-                                    </>
-                                ))}
-                            </div>
+                        <div>
+                            <img src="/images/images-empty.png" alt="">
+                        </div>
+                        <div>
+                            <img src="/images/images-empty.png" alt="">
+                        </div>
+                        <div>
+                            <img src="/images/images-empty.png" alt="">
+                        </div>
+                        <div>
+                            <img src="/images/images-empty.png" alt="">
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="copyright">
+            <p class="copyright bg-primary">
                 &copy; Copyright 2016. "Konstrukt" by Nunforest. All rights reserved.
             </p>
         </footer>
     <!-- End footer -->
+
+
+    <style lang="scss">
+
+        .footer{
+            // background: #1e1e1e;
+            padding-top: 113px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+            .item{
+                .link{
+                    &:hover{
+                        transition-delay: 50ms;
+                        transform: translateX(8px);
+                    }
+                }
+                .widget{
+                    padding-bottom: 10px;
+                    position: relative;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        width: 35px;
+                        height: 2px;
+                        left: 0px;
+                        bottom: 0px;
+                        background: #fff;
+                    }
+                }
+                .navbar-brand{
+                    margin-bottom: 37px;
+                    img{
+                        width: 236px;
+                        height: 46px;
+                    }
+                }
+                .grid{
+                    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                    gap: 15px;
+                }
+            }
+            @media (max-width: 1023px) {
+                .item{
+                    width: 45%;
+                    max-width: unset;
+                    margin-bottom: 10px;
+                }
+                .grid{
+                    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                    gap: 10px;
+                }
+            }
+        }
+    </style>

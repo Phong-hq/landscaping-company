@@ -8,11 +8,11 @@ console.log(vue());
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-  //   tailwind({
-  //   config: {
-  //     applyAstroPreset: false,
-  //     applyBaseStyles: true
-  //   }
-  // }), 
+    tailwind({
+    config: {
+      applyAstroPreset: false,
+      applyBaseStyles: true
+    }
+  }), 
   vue(), image()]
 });

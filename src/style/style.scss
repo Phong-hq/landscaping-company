@@ -8,12 +8,15 @@
     --color-text: hsl(12, 5%, 4%);
     --color-bg: hsl(10, 21%, 95%);
     --color-border: hsl(17, 24%, 90%);
-    --primary: #70bf4a;
+    --primary: #122243;
     --primary-1: #3255D1;
+    --primary-hover: #32569B;
     --btn-primary: #4C70F0;
     --btn-primary-hover: #3d5fdb;
     --btn-primary-active: #2e51cf;
     --danger: #EB5757;
+    --yellow: #d9aa2f;
+    --gray: #cccccc;
     --primary-color: #111111;
 }
 
@@ -22,17 +25,22 @@ body {
     font-size: 16px;
     margin: 0;
     font-family: 'Mulish', sans-serif !important;
-    color: var(--color-text);
+    color: #222222;
     background-color: var(--color-bg);
 }
 a{
-    transition: 0.1s;
+    transition: 0.2s;
 }
 
 .container{
     @media (min-width: 1280px) {
         max-width: 1200px !important;
     }
+    @media (max-width: 639px) {
+        padding: 0 5%;
+    }
+    margin-left: auto;
+    margin-right: auto;
 }
 .flex-center{
     display: flex;

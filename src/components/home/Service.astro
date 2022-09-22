@@ -1,6 +1,7 @@
 ---
 
     const services = await Astro.glob('../../pages/services/*.md');
+    // const tests = await Astro.glob('../../pages/test');
 
 ---
 
@@ -35,8 +36,8 @@
 
         </div>
     </section>
-<!-- End news section -->
 
 <script define:vars={{services}}>
     console.log(services,'aaaaaaaaaa');
+    // console.log(tests,'aaaaaaaaaa');
 </script>
