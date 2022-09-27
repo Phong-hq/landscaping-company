@@ -16,7 +16,6 @@ const data = await obj.data.attributes;
 const services = data.footer_services
 const abouts = data.footer_abouts
 const footer = data.footer
-console.log(footer);
 
 const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
@@ -34,9 +33,7 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                     <p class="text-18px font-light text-gray mb-8">{ data.description }</p>
                     <div class="mb-7 flex">
                         <i class="fa fa-map-marker text-white text-3xl mr-2"></i>
-                        {contacts.map((item) => (
-                                <p class="text-18px font-light text-gray">{ data.address }</p>
-                        ))}
+                            <p class="text-18px font-light text-gray">{ data.address }</p>
                     </div>
                     <div class="flex items-center phone">
                         <div class="flex-center bg-white w-14 h-14 rounded-[50%] mr-4">
@@ -44,13 +41,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                         </div>
                         <div>
                             <p class="text-14px text-white font-light mb-1">Start a New Project</p>
-                            {contacts.map((item) => (
-                                <>
-                                    <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + data.phone}>
-                                        { data.phone  }
-                                    </a>
-                                </>
-                            ))}
+                                <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + data.phone}>
+                                    { data.phone  }
+                                </a>
                         </div>
                     </div>
                 </div>

@@ -74,13 +74,13 @@ const navList = [
                 </div>
                 <div>
                     <p class="text-14px text-white font-light mb-1">Start a New Project</p>
-                    {posts.map((item) => (
-                        <>
-                            <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + data.phone}>
-                                { data.phone  }
-                            </a>
-                        </>
-                    ))}
+                    <>
+                        <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + data.phone}>
+                            { data.phone  }
+                        </a>
+                    </>
+                    <!-- {posts.map((item) => (
+                    ))} -->
                 </div>
             </div>
             <!-- <div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer advise">
@@ -105,8 +105,8 @@ const navList = [
 </script> 
 
 <script define:vars={{data}}>
-    console.log(data);
-    console.log(data.top_slider);
+    // console.log(data);
+    // console.log(data.top_slider);
 </script>
 
 <style lang="scss">
@@ -131,12 +131,6 @@ const navList = [
                     }
                 }
             }
-            // .advise{
-            //     background-color: #fff;
-            //     p{
-            //         color: var(--primary-hover) !important;
-            //     }
-            // }
         }
         z-index: 1000;
         .phone-image{
