@@ -3,14 +3,21 @@
 import logo from '../../assets/logo.png'
 import { Image } from '@astrojs/image/components';
 
+const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/home-page?populate=top_slider.image,*,logo,footer_services');
+const obj = await response.json();
+const data = await obj.data.attributes;
+const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
+
+
+
 const posts = await Astro.glob('../../markdown/layout/contact.md');
 const projects = await Astro.glob('../../pages/projects/*.md');
  
 const navList = [
         {name: 'Home', url: '/',},
         {name: 'About', url: '/'},
-        {name: 'Projects', url: '/', dropDowm:[]},
-        {name: 'Contact', url: '/'},
+        {name: 'Projects', url: '', dropDowm:[]},
+        {name: 'Contact', url: '/contact'},
     ]
     projects.forEach((e) => {
         let item = {
@@ -26,15 +33,23 @@ const navList = [
     <header class="header absolute top-0" id="header">
         <div class="flex items-center h-full w-full justify-between container">
             <a class="navbar-brand" href="/">
-                <img class="" src="/logo.png" alt="">
+                <!-- <img class="" src="/logo.png" alt=""> -->
+                <img class="" src={baseUrl + data.logo.data.attributes.url} alt="">
             </a>
             <ul class="h-full flex items-center nav-list">
                 {navList.map((item) => (
                     <Fragment>
                         <li class="h-full flex-center relative item mx-6">
-                            <a class="text-white hover:text-primary-hover text-18px font-medium" href={item.url}>
-                                { item.name }
-                            </a>
+                            {item.url != "" 
+                                ? 
+                                    <a class="text-white hover:text-primary-hover text-18px font-medium" href={item.url}>
+                                        { item.name }
+                                    </a>
+                                :
+                                    <a class="text-white hover:text-primary-hover text-18px font-medium cursor-pointer">
+                                        { item.name }
+                                    </a>
+                            }
                             {
                             item.dropDowm && item.dropDowm.length > 0 ?
                                 <ul class="bg-primary dropdown">
@@ -61,13 +76,17 @@ const navList = [
                     <p class="text-14px text-white font-light mb-1">Start a New Project</p>
                     {posts.map((item) => (
                         <>
-                            <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + item.frontmatter.phone}>
-                                { item.frontmatter.phone  }
+                            <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + data.phone}>
+                                { data.phone  }
                             </a>
                         </>
                     ))}
                 </div>
             </div>
+            <!-- <div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer advise">
+                <p class="font-bold text-white">TƯ VẤN NGAY</p>
+            </div> -->
+            
         </div>
     </header>
 </div>
@@ -83,6 +102,11 @@ const navList = [
 
         }
     })
+</script> 
+
+<script define:vars={{data}}>
+    console.log(data);
+    console.log(data.top_slider);
 </script>
 
 <style lang="scss">
@@ -107,6 +131,12 @@ const navList = [
                     }
                 }
             }
+            // .advise{
+            //     background-color: #fff;
+            //     p{
+            //         color: var(--primary-hover) !important;
+            //     }
+            // }
         }
         z-index: 1000;
         .phone-image{

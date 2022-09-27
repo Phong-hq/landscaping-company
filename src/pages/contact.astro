@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+// import Slider from '../components/home/Slider.astro'
+// import Service from '../components/home/Service.astro'
+// import Project from '../components/home/Project.astro'
+// import Client from '../components/home/Client.astro'
+const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/home-page?populate=top_slider.image,*');
+const obj = await response.json();
+const data = await obj.data.attributes;
+const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
+
+
+
+---
+
+<Layout title="Landscaping Company">
+	<main class="">
+		<!-- <Slider props={data.top_slider} />
+		<Project /> -->
+        <div class="bg-white contact-page">
+            <div class="flex-center title">
+                <p class="text-[68px] text-white font-extrabold">
+                    Title
+                </p>
+            </div>
+            <div class="container">
+                <div class=" flex justify-between py-[110px] content">
+                    <div class="w-[48%] content-item">
+                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Send a Message</p>
+                        <input class="w-full h-[64px] text-18px px-4 mb-5" placeholder="Full Name" type="text">
+                        <div class="flex justify-between">
+                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Email address" type="text">
+                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Phone Number" type="text">
+                        </div>
+                        <textarea class="w-full text-18px px-4 py-6 mb-5" placeholder="Question or Comment" rows="5"></textarea>
+                        <button class="w-[200px] h-[50px] bg-primary-hover flex-center text-white">POST COMMENT</button>
+                    </div>
+    
+                    <div class="w-[48%] content-item">
+                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Contact Us</p>
+                        <div class="text-18px font-light mb-10">
+                            Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur anim idet laborum. Sed ut perspiciatis und omni.
+                        </div>
+                        <div class="pb-8 mb-8 info-item">
+                            <p class="text-18px">Visit Us</p>
+                            <p class="text-18px font-semibold">{ data.address }</p>
+                        </div>
+                        <div class="pb-8 mb-8 info-item">
+                            <p class="text-18px">Phone</p>
+                            <p class="text-18px font-semibold">{ data.phone }</p>
+                        </div>
+                        <div class="pb-8 mb-8 info-item">
+                            <p class="text-18px">Email address</p>
+                            <p class="text-18px font-semibold">{ data.email }</p>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+
+            <div class="w-full">
+                <iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.91240124801084!2d106.64705030734024!3d10.842012500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752999597db7b1%3A0x757f7895d4180417!2zQ8O0bmcgdHkgVE5ISCBDxqEgS2jDrSBUaMawxqFuZyBN4bqhaSB2w6AgROG7i2NoIFbhu6UgxJDhuqFpIEjhu691!5e0!3m2!1sen!2s!4v1664206267904!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+	</main>
+</Layout>
+
+
+<script>
+</script>
+<style lang="scss">
+    .contact-page{
+        .title{
+             width: 100%;
+             height: 550px;
+             background-image: url('/images/banner-1.jpg');
+             background-size: cover;
+             position: relative;
+             p{
+                 z-index: 10;
+             }
+             &::before{
+                 position: absolute;
+                 content: '';
+                 background: #000;
+                 width: 100%;
+                 height: 100%;
+                 left: 0px;
+                 top: 0px;
+                 opacity: 0.7;
+                 z-index: 1;
+             }
+         }
+         .content{
+            .widget{
+                padding-bottom: 10px;
+                position: relative;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    width: 35px;
+                    height: 2px;
+                    left: 0px;
+                    bottom: 0px;
+                    background: var(--primary-hover);
+                }
+            }
+            input, textarea{
+                border: 2px solid #eeeeee;
+                border-radius: 4px;
+                &:focus{
+                    outline: none;
+                }
+            }
+            .info-item{
+                border-bottom: 1px solid #eeeeee;
+            }
+            
+         }
+         @media (max-width: 767px) {
+            .content{
+                flex-direction: column;
+                .content-item{
+                    width: 100% !important;
+                    margin-bottom: 50px;
+                }
+            }
+         }
+         
+    }
+
+</style>

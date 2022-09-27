@@ -58,6 +58,14 @@ const { file } = Astro.props;
 	<body>
 		<Header phone={ contacts[0].frontmatter.phone } />
 			<slot />
+		<div class="fixed left-4 bottom-[80px] z-[5000]">
+			<a class="w-10 h-10 mb-4" href="" target="_blank">
+				<img class="w-[60px] h-[60px]" src="/images/zalo.gif" alt="">
+			</a>
+			 <div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer mt-4 advise" id="advise-btn">
+                <p class="font-bold text-white">TƯ VẤN NGAY</p>
+            </div>
+		</div>
 		<Footer />
 
 		<script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -94,9 +102,23 @@ const { file } = Astro.props;
 		
 	</body>
 </html>
+
+<script>
+    $("#advise-btn").click(function(){
+		alert("The paragraph was clicked.");
+	});
+</script> 
+
 <style lang="scss" is:global>
 	@import url('../../src/style/tailwind.scss');
 	@import url('../../src/style/style.scss');
+	.advise{
+		background: linear-gradient(180deg, #4174d7, #26427b);
+		transition: .2s;
+		&:hover{
+			background: linear-gradient(180deg, #4b81ec, #30549c);
+		}
+	}
 	.container{
 		@media (min-width: 1280px) {
 			max-width: 1200px !important;

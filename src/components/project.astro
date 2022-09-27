@@ -6,6 +6,15 @@ import SectionComponent2 from "../components/project/Section.vue";
 // const services = await Astro.glob('/*md')
 const { frontmatter } = Astro.props;
 
+const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/projects?populate=*');
+const obj = await response.json();
+const data = await obj.data;
+const myData = data[0].attributes
+// console.log(response2,'w222222222222');
+// console.log(myData.section,'aaaaaaaaaaaaasdaa');
+const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
+
+
 ---
 
 <Layout title="Landscaping Company">
@@ -13,91 +22,42 @@ const { frontmatter } = Astro.props;
         <div class="project-page">
             <div class="flex-center title">
                 <p class="text-[68px] text-white font-extrabold">
-                    { frontmatter.service }
+                    { myData.name }
                 </p>
             </div>
-            <SectionComponent2  item={frontmatter} type={1}/>
-            <SectionComponent2  item={frontmatter} type={2}/>
-            <SectionComponent2  item={frontmatter} type={3}/>
-
-            <!-- <section>
-                <div class="py-[120px] detail">
+            {myData.section.map((item) => (
+                <>
+                <section class="project-section">
                     <div class="container">
-                        <div class="flex detail-box">
-                            <div class="w-[58%] mr-7 left">
-                                <img class="w-full" src={"/images/projects/" + frontmatter.image} alt="">
-                            </div>
-                            <div class="w-[40%] right" >
-                                <p class="text-[30px] font-extrabold text- mb-6">Project Overview</p>
-                                <p class="text-18px text-[#666666] font-light mb-12">{ frontmatter.direction }</p>
-                                {frontmatter.status && frontmatter.status != "" 
-                                    ? 
-                                    <div class="flex items-center relative">
-                                        <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Project Status</p>
-                                        <div class="h-[22px] w-full pl-[160px]">
-                                            <p class="text-18px font-light text-[#555555] ">{ frontmatter.status }</p>
-                                        </div>
-                                    </div>
-                                    <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                                    : 
-                                    <span></span>
-                                }
-    
-                                {frontmatter.type && frontmatter.type != "" 
-                                ? 
-                                <div class="flex items-center relative">
-                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Type</p>
-                                    <div class="h-[22px] w-full pl-[160px]">
-                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.type }</p>
-                                    </div>
-                                </div>
-                                <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                                : 
-                                <span></span>
-                                }
-    
-                                {frontmatter.location && frontmatter.location != "" 
-                                ? 
-                                <div class="flex items-center relative">
-                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Location</p>
-                                    <div class="h-[22px] w-full pl-[160px]">
-                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.location }</p>
-                                    </div>
-                                </div>
-                                <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                                : 
-                                <span></span>
-                                }
-    
-                                {frontmatter.area  && frontmatter.area != "" 
-                                ? 
-                                <div class="flex items-center relative">
-                                    <p class="text-18px font-semibold absolute left-0 bottom-1/2 translate-y-1/2">Area</p>
-                                    <div class="h-[22px] w-full pl-[160px]">
-                                        <p class="text-18px font-light text-[#555555] ">{ frontmatter.area }</p>
-                                    </div>
-                                </div>
-                                <div class="w-[50px] h-[1px] bg-primary-hover mt-2 mb-6"></div>
-                                : 
-                                <span></span>
-                                }
-    
-                                <button class="">
-                                    <a href="#">Schedule a visit</a>
-                                </button>
-    
-                            </div>
+                        <div class="pt-[120px] flex flex-col items-center section-title">
+                            <p class="text-[30px] font-extrabold text-primary-hover text-center ">{item.title}</p>
+                        </div>
+                        <div class="w-full flex-center">
+                            <div class="class text-center text-primary-hover mb-6 w-[80%]" set:html={item.content_center}></div>
+                        </div>
+                        <div class="">
+                            <div set:html={item.short_description}>{item.short_description}</div>
+                        </div>
+                        <div class="flex justify-betwwen project-detail">
+                            <div class="w-1/2 pr-6 mb-4 project-detail-item" set:html={item.content_left}>{item.short_description}</div>
+                            <img class="w-1/2 project-detail-item" class="w-full" src={baseUrl + myData.thumbnail.data.attributes.url} alt="" />
                         </div>
                     </div>
-                </div>
-            </section> -->
+                </section>
+                </>
+            ))}
+            <!-- <SectionComponent2  item={frontmatter} type={1}/>
+            <SectionComponent2  item={frontmatter} type={2}/>
+            <SectionComponent2  item={frontmatter} type={3}/> -->
+
         </div>
 
     </main>
 
 </Layout>
 
-<script define:vars={{frontmatter}}>
+<script define:vars={{myData}}>
+    console.log(myData,'aaaaaaaaaaaa');
 </script>
 
 <style lang="scss">
@@ -147,6 +107,39 @@ const { frontmatter } = Astro.props;
                     }
                 }
             }
+        }
+        .project-section{
+            .section-title{
+                position: relative;
+                margin-bottom: 100px;
+                p::after{
+                    content: "";
+                    width: 60px;
+                    height: 3px;
+                    background-color: var(--primary-hover);
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    margin-bottom: -8px;
+                }
+                .project-detail{
+
+                }
+            }
+            @media (max-width: 767px) {
+                .project-detail{
+                    flex-direction: column;
+                    .project-detail-item{
+                        width: 100%;
+                    }
+                }
+
+            }
+            &:last-child{
+                padding-bottom: 100px;
+            }
+
         }
     }
 </style>
