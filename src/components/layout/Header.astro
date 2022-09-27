@@ -4,28 +4,34 @@ import logo from '../../assets/logo.png'
 import { Image } from '@astrojs/image/components';
 
 const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/home-page?populate=top_slider.image,*,logo,footer_services');
+const response2 = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/projects?populate=*');
 const obj = await response.json();
+const obj2 = await response2.json();
 const data = await obj.data.attributes;
+const projects = await obj2.data;
 const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
 
 
+
 const posts = await Astro.glob('../../markdown/layout/contact.md');
-const projects = await Astro.glob('../../pages/projects/*.md');
+// const projects = await Astro.glob('../../pages/projects/*.md');
  
 const navList = [
         {name: 'Home', url: '/',},
-        {name: 'About', url: '/'},
+        // {name: 'About', url: '/'},
         {name: 'Projects', url: '', dropDowm:[]},
         {name: 'Contact', url: '/contact'},
     ]
     projects.forEach((e) => {
         let item = {
-            name: e.frontmatter.service,
-            url: e.url
+            name: e.attributes.name,
+            url: '/test/' + e.id
         }
-        navList[2].dropDowm.push(item)
+        navList[1].dropDowm.push(item)
     })
+    console.log(navList[1].dropDowm);
+    
 
 ---
 
@@ -56,7 +62,7 @@ const navList = [
                                     {item.dropDowm.map((item2) => (
                                         <>
                                         <li class="flex items-center">
-                                            <a class="text-white hover:text-primary-hover px-7" href={item2.url}>{ item2.name }</a>
+                                            <a class="text-white hover:text-primary-hover uppercase px-7" href={item2.url}>{ item2.name }</a>
                                         </li>
                                         </>
                                     ))}
@@ -68,6 +74,13 @@ const navList = [
                     </Fragment>
                 ))}
             </ul>
+            <div class="navbar-btn w-[45px] h-[45px] bg-transparent rounded-[50%] hover:bg-primary-hover flex-center duration-200">
+                <svg class="text-18px" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12H3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 6H3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 18H3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <div class="flex items-center phone">
                 <div class="flex-center bg-transparent w-14 h-14 rounded-[50%] mr-4">
                     <i class="fa fa-phone text-white text-3xl"></i>
@@ -79,14 +92,8 @@ const navList = [
                             { data.phone  }
                         </a>
                     </>
-                    <!-- {posts.map((item) => (
-                    ))} -->
                 </div>
             </div>
-            <!-- <div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer advise">
-                <p class="font-bold text-white">TƯ VẤN NGAY</p>
-            </div> -->
-            
         </div>
     </header>
 </div>
@@ -104,8 +111,8 @@ const navList = [
     })
 </script> 
 
-<script define:vars={{data}}>
-    // console.log(data);
+<script define:vars={{projects}}>
+    console.log(projects);
     // console.log(data.top_slider);
 </script>
 
@@ -141,8 +148,11 @@ const navList = [
         .navbar-brand{
             img{
                 width: 230px;
-                height: 46px;
+                height: auto;
             }
+        }
+        .navbar-btn{
+            display: none;
         }
         .nav-list{
             .item{
@@ -205,6 +215,16 @@ const navList = [
                 -ms-transform: translateY(-20);
                 transform: translateY(-20);
                 background-color: var(--primary) !important;
+            }
+        }
+        @media (max-width: 767px) {
+            .nav-list{
+                display: none;
+            }
+            .navbar-btn{
+                display: flex;
+                cursor: pointer;
+                transform: scale(1.5);
             }
         }
     }

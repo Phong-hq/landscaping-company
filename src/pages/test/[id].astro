@@ -1,15 +1,172 @@
 ---
+import Layout from "../../layouts/Layout.astro";
+
 export async function getStaticPaths() {
-  return [
-    { params: { id: '1' } },
-    { params: { id: '2' } },
-    { params: { id: '3' } }
-  ];
+  const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/projects?populate=*');
+  const obj = await response.json();
+  const projects = await obj.data;
+  let arr = []
+  projects.forEach((e:any, i:number) => {
+    let item =  {
+      params: {id: e.id + '' }
+    }
+    arr.push(item)
+  })
+  console.log(arr,'aaaaaaaaaaaaaaaaaaa');
+  
+  return arr 
 }
+
 const { id } = Astro.params;
+const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/projects/' + id + '?populate=*');
+const json = await response.json();
+
+
+// const index = projects.findIndex((e) => e.id == id)
+
+const project = json.data
+// console.log('bbbbbbbbbbbb',project.section);
+// import SectionComponent from "../components/project/Section.astro";
+// import SectionComponent2 from "../components/project/Section.vue";
+
+// const services = await Astro.glob('/*md')
+const { frontmatter } = Astro.props;
+
+// const myData = data[0].attributes
+// console.log(response2,'w222222222222');
+// console.log(myData.section,'aaaaaaaaaaaaasdaa');
+const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
+
 ---
 
-<div class="w-full h-10">
-    asdnsbfks
-    <p>Post: {id}</p>
-</div>
+<Layout title="Landscaping Company">
+    <main>
+        <div class="project-page">
+            <div class="flex-center title">
+                <p class="text-[68px] text-white font-extrabold">
+                    { project.attributes.name }
+                </p>
+            </div>
+            {project.attributes.section.map((item) => (
+                <>
+                <section class="project-section">
+                    <div class="container">
+                        <div class="pt-[120px] flex flex-col items-center section-title">
+                            <p class="text-[30px] font-extrabold text-primary-hover text-center ">{item.title}</p>
+                        </div>
+                        <div class="w-full flex-center">
+                            <div class="class text-center text-primary-hover mb-6 w-[80%]" set:html={item.content_center}></div>
+                        </div>
+                        <div class="">
+                            <div set:html={item.short_description}>{item.short_description}</div>
+                        </div>
+                        <div class="flex justify-betwwen project-detail">
+                            <div class="w-1/2 pr-6 mb-4 project-detail-item" set:html={item.content_left}>{item.short_description}</div>
+                            {project.attributes.thumbnail.data != null 
+                              ?
+                              <img class="w-1/2 project-detail-item" class="w-full" src={baseUrl + project.attributes.thumbnail.data.attributes.url} alt="" />
+                              :
+                              <span></span>
+                            }
+                        </div>
+                    </div>
+                </section>
+                </>
+            ))}
+            <!-- <SectionComponent2  item={frontmatter} type={1}/>
+            <SectionComponent2  item={frontmatter} type={2}/>
+            <SectionComponent2  item={frontmatter} type={3}/> -->
+
+        </div>
+
+    </main>
+
+</Layout>
+
+<script define:vars={{project}}>
+    console.log(project,'aaaaaaaaaaaa');
+</script>
+
+<style lang="scss">
+    .project-page{
+        .title{
+            width: 100%;
+            height: 550px;
+            background-image: url('/images/page-title.png');
+            background-size: cover;
+            position: relative;
+            p{
+                z-index: 10;
+            }
+            &::before{
+                position: absolute;
+                content: '';
+                background: #000;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                opacity: 0.7;
+                z-index: 1;
+            }
+        }
+        .detail{
+            button{
+                margin-top: 50px;
+                a{
+                    padding: 15.5px 32px;
+                    border-radius: 2px;
+                    background-color: var(--primary-hover);
+                    color: #fff;
+                    font-weight: 600;
+                }
+            }
+        }
+        @media (max-width: 767px) {
+            .detail{
+                .detail-box{
+                    flex-wrap: wrap;
+                    .left, .right{
+                        width: 90%;
+                    }
+                    .left{
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+        .project-section{
+            .section-title{
+                position: relative;
+                margin-bottom: 100px;
+                p::after{
+                    content: "";
+                    width: 60px;
+                    height: 3px;
+                    background-color: var(--primary-hover);
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    margin-bottom: -8px;
+                }
+                .project-detail{
+
+                }
+            }
+            @media (max-width: 767px) {
+                .project-detail{
+                    flex-direction: column;
+                    .project-detail-item{
+                        width: 100%;
+                    }
+                }
+
+            }
+            &:last-child{
+                padding-bottom: 100px;
+            }
+
+        }
+    }
+</style>
