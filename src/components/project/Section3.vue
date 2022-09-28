@@ -11,14 +11,14 @@
                 <div class="pr-6 mb-4 project-detail-item my-order" :style="'--order: ' + order + ';'" v-html=item.description></div>
                 <img class="project-detail-item order-2" :src="baseUrl + item.thumnail.data.attributes.url" alt="" />
             </div>
-            <div v-else-if="item.description_center && item.description_center != ''" v-html=item.description_center></div>
+            <div v-else-if="item.description_center && item.description_center != ''" v-html="textCenter"></div>
         </div>
     </section>
 </template>
 
 <script setup>
 
-    import { ref, onMounted, onUnmounted, computed } from 'vue';
+    import { ref, onMounted, onBeforeMount , computed } from 'vue';
 
     const props =  defineProps({
         item: {
@@ -27,12 +27,13 @@
         },
     });
 
-    onMounted(() => {
+    onBeforeMount (() => {
+
     })
 
 
     const baseUrl = ref('https://estate-strapi.srv01.dtsmart.dev')
-    // const order = ref(1)
+    // const textCenter = ref('')
 
     const order = computed(() => {
         let result = 1
@@ -41,6 +42,24 @@
         }
         return result
     })
+    // console.log('props.item.description_center',props.item.description_center);
+
+    const textCenter = computed(() => {
+        let index = -1
+        let result = ""
+        if(props.item.description_center && props.item.description_center != ""){
+            index = props.item.description_center.indexOf('src="/')
+        }
+        if(index > -1){
+            result = props.item.description_center.replaceAll('/uploads', 'https://estate-strapi.srv01.dtsmart.dev/uploads')
+        }
+        else{
+            result = props.item.description_center
+        }
+        console.log(result);
+        return result
+    })
+
 
 
 
@@ -51,6 +70,7 @@
         .section-title{
             position: relative;
             margin-bottom: 50px;
+        
             p::after{
                 content: "";
                 width: 60px;
@@ -62,6 +82,14 @@
                 transform: translateX(-50%);
                 margin-bottom: -8px;
             }
+        }
+        p{
+            img{
+                margin: 0 auto;
+            }
+        }
+        img{
+            margin: 0 auto;
         }
         .project-detail-item{
             // background-color: #878784;

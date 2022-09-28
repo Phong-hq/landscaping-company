@@ -40,7 +40,6 @@
 
     const close = () => {
         let modal = document.getElementById("custom-modal")
-        console.log(modal);
         modal.classList.remove("show")
         document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
     }
