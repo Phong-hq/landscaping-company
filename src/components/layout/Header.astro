@@ -19,7 +19,6 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
 
 const posts = await Astro.glob('../../markdown/layout/contact.md');
-// const projects = await Astro.glob('../../pages/projects/*.md');
  
 const navList = [
         {name: 'Home', url: '/',},
@@ -30,7 +29,7 @@ const navList = [
     projects.forEach((e) => {
         let item = {
             name: e.attributes.name_project,
-            url: '/test/' + e.id
+            url: '/projects/' + e.id
         }
         navList[1].dropDowm.push(item)
     })
@@ -41,7 +40,6 @@ const navList = [
     <header class="header absolute top-0" id="header">
         <div class="flex items-center h-full w-full justify-between container">
             <a class="navbar-brand" href="/">
-                <!-- <img class="" src="/logo.png" alt=""> -->
                 <img class="" src={baseUrl + infomation.logo.data.attributes.url} alt="">
             </a>
             <ul class="h-full flex items-center nav-list">
