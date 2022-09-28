@@ -2,6 +2,7 @@
 // import HeaderContact from '../components/layout/HeaderContact.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import AdviseModal from '../components/layout/AdviseModal.vue';
 
 const contacts = await Astro.glob('../markdown/layout/contact.md');
 
@@ -57,15 +58,19 @@ const { file } = Astro.props;
 	
 	<body>
 		<Header phone={ contacts[0].frontmatter.phone } />
-			<slot />
+
+		<slot />
+
 		<div class="fixed left-4 bottom-[80px] z-[5000]">
 			<a class="w-10 h-10 mb-4" href="" target="_blank">
 				<img class="w-[60px] h-[60px]" src="/images/zalo.gif" alt="">
 			</a>
-			 <div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer mt-4 advise" id="advise-btn">
-                <p class="font-bold text-white">TƯ VẤN NGAY</p>
-            </div>
+			<div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer mt-4 advise" id="advise-btn">
+				<p class="font-bold text-white">TƯ VẤN NGAY</p>
+			</div>
 		</div>
+
+		<AdviseModal client:load />
 		<Footer />
 
 		<script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -105,7 +110,8 @@ const { file } = Astro.props;
 
 <script>
     $("#advise-btn").click(function(){
-		alert("The paragraph was clicked.");
+		$( "#custom-modal" ).addClass( "show" );
+		$( "body" ).addClass( "overflow-hidden" );
 	});
 </script> 
 

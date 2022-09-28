@@ -59,8 +59,8 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                 </div>
             </div>
 
-            <div class="w-full">
-                <iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.91240124801084!2d106.64705030734024!3d10.842012500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752999597db7b1%3A0x757f7895d4180417!2zQ8O0bmcgdHkgVE5ISCBDxqEgS2jDrSBUaMawxqFuZyBN4bqhaSB2w6AgROG7i2NoIFbhu6UgxJDhuqFpIEjhu691!5e0!3m2!1sen!2s!4v1664206267904!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="w-full map">
+                <iframe class="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.91240124801084!2d106.64705030734024!3d10.842012500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752999597db7b1%3A0x757f7895d4180417!2zQ8O0bmcgdHkgVE5ISCBDxqEgS2jDrSBUaMawxqFuZyBN4bqhaSB2w6AgROG7i2NoIFbhu6UgxJDhuqFpIEjhu691!5e0!3m2!1sen!2s!4v1664206267904!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
@@ -118,6 +118,11 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                 border-bottom: 1px solid #eeeeee;
             }
             
+         }
+         .map{
+            iframe{
+                width: 100%;
+            }
          }
          @media (max-width: 767px) {
             .content{
