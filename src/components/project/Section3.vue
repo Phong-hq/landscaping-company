@@ -2,13 +2,15 @@
    <section class="project-section">
         <div class="container">
             <div class="pt-[120px] flex flex-col items-center section-title">
-                <p class="text-[30px] font-extrabold text-primary-hover text-center ">{{ item.title }}</p>
+                <p class="text-[30px] font-extrabold text-primary-hover text-center " v-if="item.title">{{ item.title }}</p>
             </div>
             <div class="w-full flex-center">
-                <div class="class text-center text-primary-hover mb-6 w-[80%]" v-html="item.text"></div>
+                <div class="class text-center text-primary-hover mb-6 w-[80%]" v-html="item.text" v-if="item.text"></div>
             </div>
             <div class="flex justify-between project-detail" v-if="item.type == 'left' || item.type == 'right'">
-                <div class="pr-6 mb-4 project-detail-item my-order" :style="'--order: ' + order + ';'" v-html=item.description></div>
+                <div class="pr-6 mb-4 project-detail-item my-order" :style="'--order: ' + order + ';'">
+                    <div v-html=item.description v-if="item.description"></div>
+                </div>
                 <img class="project-detail-item order-2" :src="baseUrl + item.thumnail.data.attributes.url" alt="" />
             </div>
             <div v-else-if="item.description_center && item.description_center != ''" v-html="textCenter"></div>

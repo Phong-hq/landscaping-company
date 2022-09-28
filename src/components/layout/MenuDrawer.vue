@@ -92,7 +92,6 @@
 
     const close = () => {
         let modal = document.getElementById("menu-modal")
-        console.log('adsw')
         document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
         modal.classList.remove("show")
     }
