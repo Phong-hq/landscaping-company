@@ -7,10 +7,11 @@
             <div class="w-full flex-center">
                 <div class="class text-center text-primary-hover mb-6 w-[80%]" v-html="item.text"></div>
             </div>
-            <div class="flex justify-between project-detail">
+            <div class="flex justify-between project-detail" v-if="item.type == 'left' || item.type == 'right'">
                 <div class="pr-6 mb-4 project-detail-item my-order" :style="'--order: ' + order + ';'" v-html=item.description></div>
                 <img class="project-detail-item order-2" :src="baseUrl + item.thumnail.data.attributes.url" alt="" />
             </div>
+            <div v-else-if="item.description_center && item.description_center != ''" v-html=item.description_center></div>
         </div>
     </section>
 </template>
@@ -27,10 +28,8 @@
     });
 
     onMounted(() => {
-        console.log('asgbvdlsl');
     })
 
-    console.log(props.item,'asdasd');
 
     const baseUrl = ref('https://estate-strapi.srv01.dtsmart.dev')
     // const order = ref(1)
@@ -40,9 +39,6 @@
         if(props.item.type == 'right'){
             result = 3
         }
-        // else if(props.type == 3){
-        //     result = 4
-        // }
         return result
     })
 
@@ -79,6 +75,9 @@
                 flex-direction: column;
                 .project-detail-item{
                     width: 100%;
+                    &.my-order{
+                        order: 1;
+                    }
                 }
             }
 
