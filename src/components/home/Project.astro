@@ -10,8 +10,8 @@
     const imageList = []
     projects.forEach((e:any, i:number) => {
         let item = '/images/project-2.jpg'
-        if(e.attributes.thumbnail.data != null ){
-            item = baseUrl + e.attributes.thumbnail.data.attributes.url
+        if(e.attributes.image_banner.data != null ){
+            item = baseUrl + e.attributes.image_banner.data.attributes.url
         }
         imageList.push(item)
     })
@@ -38,7 +38,7 @@
                                 <p class="text-[100px] text-white z-2 font-light absolute bottom-0">0{ i+1 }</p>
                             </div>
                             <div class="w-full flex-center">
-                                <a class="text-2xl text-black hover:text-primary-hover font-semibold pt-7" href={ '/test/' + item.id }>{ item.attributes.name }</a>
+                                <a class="text-2xl text-black hover:text-primary-hover font-semibold pt-7" href={ '/test/' + item.id }>{ item.attributes.name_project }</a>
                             </div>
                         </div>
                     </>

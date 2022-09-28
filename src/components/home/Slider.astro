@@ -1,15 +1,26 @@
 ---
 
 const iconList = [
-    {image: 'facebook',  url: 'https://www.facebook.com/dtsmart.vn'},
-    {image: 'instagram',  url: '#'},
-    {image: 'youtube',  url: '#'},
-    {image: 'twitter',  url: '#'},
-    {image: 'linkedin',  url: '#'},
+    {image: 'facebook',  url: ''},
+    {image: 'instagram',  url: ''},
+    {image: 'youtube',  url: ''},
+    {image: 'twitter',  url: ''},
+    {image: 'linkedin',  url: ''},
 ]
+
+const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/home-page?populate=*');
+const obj = await response.json();
+const data = await obj.data.attributes;
 
 const {props} = Astro.props
 const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
+
+iconList[0].url = data.facebook
+iconList[1].url = data.instagram
+iconList[2].url = data.youtube
+iconList[3].url = data.switter
+iconList[4].url = data.linkedin
+
 
 ---
 
@@ -19,9 +30,15 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
         <div class="absolute flex icon-list">
             {iconList.map((item) => (
                 <>
-                    <a class="w-11 h-11 hover:bg-primary-hover rounded-[50%] flex-center mr-1" href={ item.url } target="_blank">
-                        <img src={'/images/' + item.image + '.svg'}  alt="">
-                    </a>
+                    {
+                        item.url != '' && item.url != undefined
+                        ?
+                        <a class="w-11 h-11 hover:bg-primary-hover rounded-[50%] flex-center mr-1" href={ item.url } target="_blank">
+                            <img src={'/images/' + item.image + '.svg'}  alt="">
+                        </a>
+                        :
+                        <span></span>
+                    }
                 </>
             ))}
             
@@ -31,9 +48,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
             <div id="rev_slider_206_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.1.1RC">
                 <ul>
                     <!-- SLIDE  -->
-                    <li data-index="rs-688" data-transition="fadethroughdark" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title={props[0].short_title} data-param1="01" data-description="">
+                    <li data-index="rs-688" data-transition="fadethroughdark" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title={props[0].title_small} data-param1="01" data-description="">
                         <!-- MAIN IMAGE -->
-                        <img src={baseUrl + props[0].image.data.attributes.url} alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg" data-no-retina>
+                        <img src={baseUrl + props[0].banner.data.attributes.url} alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg" data-no-retina>
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 1 -->
@@ -61,9 +78,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                         </div>
                     </li>
                     <!-- SLIDE  -->
-                    <li data-index="rs-689" data-transition="fadethroughdark" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title={props[1].short_title} data-param1="02" data-description="">
+                    <li data-index="rs-689" data-transition="fadethroughdark" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title={props[1].title_small} data-param1="02" data-description="">
                         <!-- MAIN IMAGE -->
-                        <img src={baseUrl + props[1].image.data.attributes.url}  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg" data-no-retina>
+                        <img src={baseUrl + props[1].banner.data.attributes.url}  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg" data-no-retina>
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 1 -->
@@ -91,9 +108,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                         </div>
                     </li>
                     <!-- SLIDE  -->
-                    <li data-index="rs-690" data-transition="fadethroughdark" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title={props[2].short_title} data-param1="03" data-description="">
+                    <li data-index="rs-690" data-transition="fadethroughdark" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title={props[2].title_small} data-param1="03" data-description="">
                         <!-- MAIN IMAGE -->
-                        <img src={baseUrl + props[2].image.data.attributes.url}  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg" data-no-retina>
+                        <img src={baseUrl + props[2].banner.data.attributes.url}  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg" data-no-retina>
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 1 -->
