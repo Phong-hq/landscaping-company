@@ -58,7 +58,6 @@
         else{
             result = props.item.description_center
         }
-        console.log(result);
         return result
     })
 

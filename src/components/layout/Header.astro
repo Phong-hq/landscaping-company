@@ -18,11 +18,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
 
 
-export async function getStaticPaths({ paginate }) { /* ... */ }
-const { page } = Astro.props;
-const posts = await Astro.glob('../../markdown/layout/contact.md');
+
+// const posts = await Astro.glob('../../markdown/layout/contact.md');
 // const { page } = Astro.props;
-console.log(page,'asdvjkl');
 
  
 const navList = [
@@ -121,10 +119,10 @@ const navList = [
 	});
 </script> 
 
-<script define:vars={{page}}>
+<!-- <script define:vars={{page}}>
     console.log(page, 'asdasd');
     // console.log(page, 'asdasd');
-</script>
+</script> -->
 
 <style lang="scss">
     .header{

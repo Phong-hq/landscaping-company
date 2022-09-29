@@ -4,8 +4,9 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import AdviseModal from '../components/layout/AdviseModal.vue';
 
-const contacts = await Astro.glob('../markdown/layout/contact.md');
-
+const response = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/home-page?populate=*');
+const obj = await response.json();
+const data =  obj.data.attributes;
 
 
 export interface Props {
@@ -57,20 +58,27 @@ const { file } = Astro.props;
 	<!-- <HeaderContact /> -->
 	
 	<body>
-		<Header phone={ contacts[0].frontmatter.phone } />
+		<Header  />
 
 		<slot />
 
 		<div class="fixed left-4 bottom-[80px] z-[5000]">
-			<a class="w-10 h-10 mb-4" href="https://zalo.me/0392287632" target="_blank">
-				<img class="w-[60px] h-[60px]" src="/images/zalo.gif" alt="">
-			</a>
+			{data.zalo && data.zalo != ''
+				?
+				<a class="w-10 h-10 mb-4" href={data.zalo} target="_blank">
+					<img class="w-[60px] h-[60px]" src="/images/zalo.gif" alt="">
+				</a>
+				:
+				<a class="w-10 h-10 mb-4" href="#" target="_blank">
+					<img class="w-[60px] h-[60px]" src="/images/zalo.gif" alt="">
+				</a>
+			}
 			<div class="w-[160px] h-10 rounded-[50px] bg-primary-hover flex-center cursor-pointer mt-4 advise" id="advise-btn">
 				<p class="font-bold text-white">TƯ VẤN NGAY</p>
 			</div>
 		</div>
 
-		<AdviseModal client:load />
+		<AdviseModal contactList={data.services_contact} client:load />
 		<Footer />
 
 		<script type="text/javascript" src="/js/jquery.min.js"></script>

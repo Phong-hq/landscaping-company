@@ -88,7 +88,7 @@
         {drop: false},
         {drop: false},
     ]);
-    console.log('asd',dropDownmList);
+    // console.log('asd',dropDownmList);
 
     const close = () => {
         let modal = document.getElementById("menu-modal")
@@ -105,7 +105,6 @@
         .then((respone) => respone.json())
         .then(async (data) => {
             myData.value = data.data.attributes
-            console.log(myData.value);
         })
         // console.log(this.data);
         iconList[0].url = myData.value.facebook
@@ -113,7 +112,7 @@
         iconList[2].url = myData.value.youtube
         iconList[3].url = myData.value.switter
         iconList[4].url = myData.value.linkedin
-        console.log(iconList);
+        // console.log(iconList);
     })
 
     const iconList2 = computed(() =>{

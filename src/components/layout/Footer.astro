@@ -16,8 +16,8 @@ const response2 = await fetch('https://estate-strapi.srv01.dtsmart.dev/api/foote
 const obj = await response.json();
 const obj2 = await response2.json();
 const data =  obj.data.attributes;
-const services = data.test_1;
-const aboutUs =  data.test_2;
+const services = data.services;
+const aboutUs =  data.about_us;
 const ourGallerys =  obj2.data.attributes.our_gallery;
 const infomation = data.infomation
 const logo = obj2.data.attributes.infomation.logo.data.attributes.url
@@ -59,7 +59,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
 
                 <div class="max-w-[330px] item">
                     <div class="widget mt-7 mb-6">
-                        <p class="text-2xl text-white font-extrabold">SERVICE</p>
+                        <p class="text-2xl text-white font-extrabold">DỊCH VỤ</p>
                     </div>
                     <div class="flex flex-col">
                     {services.map((item) => (
@@ -74,7 +74,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
 
                 <div class="max-w-[210px] item">
                     <div class="widget mt-7 mb-6">
-                        <p class="text-2xl text-white font-extrabold">ABOUT US</p>
+                        <p class="text-2xl text-white font-extrabold">GIỚI THIỆU</p>
                     </div>
                     <div class="flex flex-col">
                     {aboutUs.map((item) => (
@@ -89,7 +89,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
 
                 <div class="max-w-[270px] item">
                     <div class="widget mt-7 mb-6">
-                        <p class="text-2xl text-white font-extrabold">OUR GALLERY</p>
+                        <p class="text-2xl text-white font-extrabold">THƯ VIỆN</p>
                     </div>
                     <div class="grid">
                         {ourGallerys.map((item) => (
