@@ -28,7 +28,7 @@
             </div>
             <div v-else>
                 <p class="text-[27px] font-bold text-white text-center">CẢM ƠN QUÝ KHÁCH ĐÃ <br /> ĐỂ LẠI THÔNG TIN</p>
-                <img class="my-6" src="/images/banner-2.jpg" alt="">
+                <img class="my-6" src="../../../public/images/banner-2.jpg" alt="">
                 <p class="text-14px text-white text-center">
                     QUÝ KHÁCH VUI LÒNG CHÚ Ý ĐIỆN THOẠI.
                     CHUYÊN VIÊN TƯ VẤN SẼ LIÊN HỆ CHO QUÝ KHÁCH TRONG THỜI GIAN SỚM NHẤT!</p>
