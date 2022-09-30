@@ -20,37 +20,35 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
         <div class="bg-white contact-page">
             <div class="flex-center title">
                 <p class="text-[68px] text-white font-extrabold">
-                    Title
+                    Liên hệ với chúng tôi
                 </p>
             </div>
             <div class="container">
                 <div class=" flex justify-between py-[110px] content">
                     <div class="w-[48%] content-item">
-                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Send a Message</p>
-                        <input class="w-full h-[64px] text-18px px-4 mb-5" placeholder="Full Name" type="text">
+                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Gửi tin nhắn cho chúng tôi</p>
+                        <input class="w-full h-[64px] text-18px px-4 mb-5" placeholder="Tên" type="text">
                         <div class="flex justify-between">
-                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Email address" type="text">
-                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Phone Number" type="text">
+                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Địa chỉ" type="text">
+                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Điện thoại" type="text">
                         </div>
-                        <textarea class="w-full text-18px px-4 py-6 mb-5" placeholder="Question or Comment" rows="5"></textarea>
-                        <button class="w-[200px] h-[50px] bg-primary-hover flex-center text-white">POST COMMENT</button>
+                        <textarea class="w-full text-18px px-4 py-6 mb-5" placeholder="Nội dung yều cầu" rows="5"></textarea>
+                        <button class="w-[200px] h-[50px] bg-primary-hover flex-center text-white font-semibold">GỬI ĐI</button>
                     </div>
     
                     <div class="w-[48%] content-item">
-                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Contact Us</p>
-                        <div class="text-18px font-light mb-10">
-                            { data.description }
-                        </div>
+                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Hỗ trợ</p>
+                        <div class="text-18px font-light mb-10" set:html={ data.description }></div>
                         <div class="pb-8 mb-8 info-item">
-                            <p class="text-18px">Visit Us</p>
+                            <p class="text-18px">Địa chỉ</p>
                             <p class="text-18px font-semibold">{ data.adress }</p>
                         </div>
                         <div class="pb-8 mb-8 info-item">
-                            <p class="text-18px">Phone</p>
+                            <p class="text-18px">Hotline</p>
                             <p class="text-18px font-semibold">{ data.phone }</p>
                         </div>
                         <div class="pb-8 mb-8 info-item">
-                            <p class="text-18px">Email address</p>
+                            <p class="text-18px">Mail</p>
                             <p class="text-18px font-semibold">{ data.email }</p>
                         </div>
     
@@ -59,9 +57,7 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
                 </div>
             </div>
 
-            <div class="w-full map">
-                <iframe class="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.91240124801084!2d106.64705030734024!3d10.842012500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752999597db7b1%3A0x757f7895d4180417!2zQ8O0bmcgdHkgVE5ISCBDxqEgS2jDrSBUaMawxqFuZyBN4bqhaSB2w6AgROG7i2NoIFbhu6UgxJDhuqFpIEjhu691!5e0!3m2!1sen!2s!4v1664206267904!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            <div class="w-full map" set:html={data.map}></div>
         </div>
 
 	</main>
@@ -120,10 +116,14 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
             
          }
          .map{
+            background-color: #eeeeee;
             iframe{
-                width: 100%;
+                width: 100% !important;
             }
          }
+         iframe{
+            width: 100% !important;
+        }
          @media (max-width: 767px) {
             .content{
                 flex-direction: column;
