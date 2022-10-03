@@ -18,7 +18,7 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 		<!-- <Slider props={data.top_slider} />
 		<Project /> -->
         <div class="bg-white contact-page">
-            <div class="flex-center title">
+            <div class="flex-center title" style={"--contact-thumnail: url('" + baseUrl + data.thumnail.data.attributes.url + "');"}>
                 <p class="text-[68px] text-white font-extrabold">
                     Liên hệ với chúng tôi
                 </p>
@@ -71,7 +71,7 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
         .title{
              width: 100%;
              height: 550px;
-             background-image: url('/images/banner-1.jpg');
+             background-image: var(--contact-thumnail);
              background-size: cover;
              position: relative;
              p{
@@ -115,7 +115,7 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
             }
             
          }
-         .map{
+         .map :is{
             background-color: #eeeeee;
             iframe{
                 width: 100% !important;
