@@ -1,6 +1,6 @@
 ---
 
-const contacts = await Astro.glob('../../markdown/layout/contact.md');
+// const contacts = await Astro.glob('../../markdown/layout/contact.md');
 
 const servicesList = [
     'Property Construction', 'Investor Relations', 'Community Development', 'Property Management', 'Floor Designing', 'Re-Construct Buildings'
@@ -23,7 +23,7 @@ const infomation = data.infomation
 const logo = obj2.data.attributes.infomation.logo.data.attributes.url
 const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
-console.log(ourGallerys[0].image.data.attributes.url);
+// console.log(ourGallerys[0].image.data.attributes.url);
 
 
 
@@ -49,7 +49,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
                             <i class="fa fa-phone text-primary text-3xl"></i>
                         </div>
                         <div>
-                            <p class="text-14px text-white font-light mb-1">Liên hệ ngay</p>
+                            <p class="text-14px text-white font-light mb-1">Call Us</p>
                                 <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + infomation.phone}>
                                     { infomation.phone  }
                                 </a>
@@ -59,7 +59,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
 
                 <div class="max-w-[330px] item">
                     <div class="widget mt-7 mb-6">
-                        <p class="text-2xl text-white font-extrabold">DỊCH VỤ</p>
+                        <p class="text-2xl text-white font-extrabold">SERVICE</p>
                     </div>
                     <div class="flex flex-col">
                     {services.map((item) => (
@@ -74,7 +74,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
 
                 <div class="max-w-[210px] item">
                     <div class="widget mt-7 mb-6">
-                        <p class="text-2xl text-white font-extrabold">GIỚI THIỆU</p>
+                        <p class="text-2xl text-white font-extrabold">INTRODUCE</p>
                     </div>
                     <div class="flex flex-col">
                     {aboutUs.map((item) => (
@@ -89,7 +89,7 @@ console.log(ourGallerys[0].image.data.attributes.url);
 
                 <div class="max-w-[270px] item">
                     <div class="widget mt-7 mb-6">
-                        <p class="text-2xl text-white font-extrabold">THƯ VIỆN</p>
+                        <p class="text-2xl text-white font-extrabold">LIBRARY</p>
                     </div>
                     <div class="grid">
                         {ourGallerys.map((item) => (
@@ -102,9 +102,9 @@ console.log(ourGallerys[0].image.data.attributes.url);
                     </div>
                 </div>
             </div>
-            <p class="copyright bg-primary">
+            <!-- <p class="copyright bg-primary">
                 &copy; Copyright 2016. "Konstrukt" by Nunforest. All rights reserved.
-            </p>
+            </p> -->
         </footer>
     <!-- End footer -->
 
@@ -160,6 +160,11 @@ console.log(ourGallerys[0].image.data.attributes.url);
                 }
             }
             @media (max-width: 767px) {
+                .item{
+                    width: 95%;
+                    max-width: unset;
+                    margin-bottom: 50px;
+                }
                 .phone{
                     .flex-center{
                         width: 40px;

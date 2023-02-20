@@ -35,9 +35,11 @@
                 </div>
                 <div class="absolute bottom-10 flex icon-list mt-[100px]">
                     <div  v-for="(item, u) in iconList2" :key="u">
-                        <a class="w-11 h-11 hover:bg-primary-hover rounded-[50%] flex-center mr-1" :href="item.url" target="_blank">
-                            <img :src="'/images/' + item.image + '.svg'"  alt="">
-                        </a>
+                        <div  v-if="item.url && item.url != ''">
+                            <a class="w-11 h-11 hover:bg-primary-hover rounded-[50%] flex-center mr-1" :href="item.url" target="_blank">
+                                <img :src="item.image"  alt="">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,7 +50,11 @@
 
 <script setup>
     import {ref, onMounted, onUnmounted, onBeforeMount, computed, nextTick } from 'vue';
-    
+    import facebook from '../../../public/images/facebook.svg';
+    import instagram from '../../../public/images/instagram.svg';
+    import youtube from '../../../public/images/youtube.svg';
+    import twitter from '../../../public/images/twitter.svg';
+    import linkedin from '../../../public/images/linkedin.svg';
 
 
 
@@ -69,11 +75,11 @@
     const myData = ref({})
     const phone = ref('')
     const iconList = [
-        {image: 'facebook',  url: '123'},
-        {image: 'instagram',  url: ''},
-        {image: 'youtube',  url: ''},
-        {image: 'twitter',  url: ''},
-        {image: 'linkedin',  url: ''},
+        {image: facebook,  url: ''},
+        {image: instagram,  url: ''},
+        {image: youtube,  url: ''},
+        {image: twitter,  url: ''},
+        {image: linkedin,  url: ''},
     ]
 
 
@@ -141,10 +147,12 @@
         pointer-events: none;
         transform-style: 0.15s;
         z-index: 6000;
+        transition: .2s;
         .modal{
             // border-radius: 20px;
             overflow: auto;
-            border-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
             overflow: hidden;
             z-index: 5900;
             width: 100%;

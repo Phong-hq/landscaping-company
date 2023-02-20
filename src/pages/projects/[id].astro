@@ -32,9 +32,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
 ---
 
-<Layout title="Dtsmart">
+<Layout title={ project.name_project }>
     <main>
-        <div class="project-page" style={"--title-background: url('" + baseUrl  + project.image_banner.data.attributes.url + "')"}>
+        <div class="bg-white project-page" style={"--title-background: url('" + baseUrl  + project.image_banner.data.attributes.url + "')"}>
             <div class="flex-center title">
                 <p class="text-[68px] text-white font-extrabold">
                     { project.name_project }

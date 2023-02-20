@@ -1,6 +1,6 @@
 <template>
     <section class="projects-detail">
-        <div class="pt-[120px] ">
+        <div class="pt-[60px] ">
             <div class="container">
                 <div class="flex justify-between detail-box" :class="{ 'type-center' : type == 3}">
                     <div class="w-[53%] left" :style="'order: 2'">

@@ -24,9 +24,9 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
  
 const navList = [
-        {name: 'Trang chủ', url: '/',},
-        {name: 'Dự án', url: '', dropDowm:[]},
-        {name: 'Liên hệ', url: '/contact'},
+        {name: 'Home', url: '/',},
+        {name: 'Project', url: '', dropDowm:[]},
+        {name: 'Contact', url: '/contact'},
     ]
     projects.forEach((e) => {
         let item = {
@@ -64,7 +64,7 @@ const navList = [
                                     {item.dropDowm.map((item2) => (
                                         <>
                                         <li class="flex items-center">
-                                            <a class="text-white hover:text-primary-hover uppercase px-7" href={item2.url}>{ item2.name }</a>
+                                            <a class="text-white hover:text-primary-hover truncate  uppercase px-7" href={item2.url}>{ item2.name }</a>
                                         </li>
                                         </>
                                     ))}
@@ -88,7 +88,7 @@ const navList = [
                     <i class="fa fa-phone text-white text-3xl"></i>
                 </div>
                 <div>
-                    <p class="text-14px text-white font-light mb-1">Liên hệ ngay</p>
+                    <p class="text-14px text-white font-light mb-1">Call us</p>
                     <>
                         <a class="text-2xl text-white hover:text-primary-hover font-extrabold" href={'tel:' + infomation.phone}>
                             { infomation.phone  }

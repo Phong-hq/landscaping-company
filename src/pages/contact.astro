@@ -13,43 +13,43 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
 
 ---
 
-<Layout title="Dtsmart">
+<Layout title="Advance Design Architects">
 	<main class="">
 		<!-- <Slider props={data.top_slider} />
 		<Project /> -->
         <div class="bg-white contact-page">
             <div class="flex-center title" style={"--contact-thumnail: url('" + baseUrl + data.thumnail.data.attributes.url + "');"}>
                 <p class="text-[68px] text-white font-extrabold">
-                    Liên hệ với chúng tôi
+                    LET’S WORK TOGETHER
                 </p>
             </div>
             <div class="container">
                 <div class=" flex justify-between py-[110px] content">
                     <div class="w-[48%] content-item">
-                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Gửi tin nhắn cho chúng tôi</p>
-                        <input class="w-full h-[64px] text-18px px-4 mb-5" placeholder="Tên" type="text">
+                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Contact us</p>
+                        <input class="w-full h-[64px] text-18px px-4 mb-5" placeholder="Name" type="text">
                         <div class="flex justify-between">
-                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Địa chỉ" type="text">
-                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Điện thoại" type="text">
+                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Adress" type="text">
+                            <input class="w-[48%] h-[64px] text-18px px-4 mb-5" placeholder="Phone" type="text">
                         </div>
-                        <textarea class="w-full text-18px px-4 py-6 mb-5" placeholder="Nội dung yều cầu" rows="5"></textarea>
-                        <button class="w-[200px] h-[50px] bg-primary-hover flex-center text-white font-semibold">GỬI ĐI</button>
+                        <textarea class="w-full text-18px px-4 py-6 mb-5" placeholder="Message" rows="5"></textarea>
+                        <button class="w-[200px] h-[50px] bg-primary-hover flex-center text-white font-semibold">Send</button>
                     </div>
     
                     <div class="w-[48%] content-item">
-                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Hỗ trợ</p>
-                        <div class="text-18px font-light mb-10" set:html={ data.description }></div>
+                        <p class="text-[30px] text-primary-hover font-extrabold widget mb-10">Contact details</p>
+                        <div class="text-18px font-light mb-10 font-semibold lowercase" set:html={ data.description }></div>
                         <div class="pb-8 mb-8 info-item">
-                            <p class="text-18px">Địa chỉ</p>
-                            <p class="text-18px font-semibold">{ data.adress }</p>
+                            <p class="text-18px font-bold">Address</p>
+                            <p class="text-18px lowercase">{ data.adress }</p>
                         </div>
                         <div class="pb-8 mb-8 info-item">
-                            <p class="text-18px">Hotline</p>
-                            <p class="text-18px font-semibold">{ data.phone }</p>
+                            <p class="text-18px font-bold">Hotline</p>
+                            <a class="text-18px hover:underline" href={'tel:' + data.phone}>{ data.phone }</a>
                         </div>
                         <div class="pb-8 mb-8 info-item">
-                            <p class="text-18px">Mail</p>
-                            <p class="text-18px font-semibold">{ data.email }</p>
+                            <p class="text-18px font-bold">Mail</p>
+                            <a href={"mailto:" + data.email} class="text-18px lowercase hover:underline">{ data.email }</a>
                         </div>
     
                     </div>
@@ -106,8 +106,11 @@ const baseUrl = "https://estate-strapi.srv01.dtsmart.dev"
             input, textarea{
                 border: 2px solid #eeeeee;
                 border-radius: 4px;
+                transition: .3s;
                 &:focus{
                     outline: none;
+                    border-color: #40a9ff;
+                    box-shadow: 0 0 0 2px #1890ff33;
                 }
             }
             .info-item{

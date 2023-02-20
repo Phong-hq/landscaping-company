@@ -1,7 +1,7 @@
 <template>
    <section class="project-section">
         <div class="container">
-            <div class="pt-[120px] flex flex-col items-center section-title">
+            <div class="pt-[60px] flex flex-col items-center section-title">
                 <p class="text-[30px] font-extrabold text-primary-hover text-center " v-if="item.title">{{ item.title }}</p>
             </div>
             <div class="w-full flex-center">
